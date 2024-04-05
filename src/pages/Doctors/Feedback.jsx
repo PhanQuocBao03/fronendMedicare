@@ -3,7 +3,7 @@ import avatar from '../../assets/images/avatar-icon.png';
 import { formateDate } from '../../utils/fomateDay';
 import {AiFillStar} from 'react-icons/ai';
 import FeedbackForm from './FeedbackFrom';
-const Feedback=()=>{
+const Feedback=({reviews, totalRating})=>{
     const [showFeedbackForm,setShowFeedbackForm]=useState(false)
     
     return(
@@ -11,27 +11,28 @@ const Feedback=()=>{
         
         <div className="mb-[50px]">
             <h4 className="text-[20px] leading-[30px] font-bold text-headingColor mb-[30px]">
-                All review
+                All review ({totalRating})
             </h4>
-            <div className="flex justify-between gap-10 mb-[30px]">
+            {reviews?.map((review, index)=>(
+                <div key={index} className="flex justify-between gap-10 mb-[30px]">
                 <div className="flex gap-3">
                     <figure className="w-10 h-10 rounded-full">
-                        <img src={avatar} className="w-full" alt="" />
+                        <img src={review?.user?.photo} className="w-full" alt="" />
                     </figure>
                     <div>
                         <h5 className='text-[16px] leading-6 text-primaryColor font-bold'>
-                            Ali ahmed
+                           {review?.user?.name}
                         </h5>
-                        <p className='text-[14px] leading-6 text-textColor'>{formateDate('02-01-2024')}</p>
-                        <p className='text_para mt-3 font-medium text-[15px]'>Good services</p>
+                        <p className='text-[14px] leading-6 text-textColor'>{formateDate(review?.createdAt)}</p>
+                        <p className='text_para mt-3 font-medium text-[15px]'>{review?.reviewText}</p>
                     </div>
                 </div>
                 <div className="flex gap-1">
-                    {[...Array(5).keys()].map((_,index)=>(
+                    {[...Array(review?.rating).keys()].map((_,index)=>(
                     <AiFillStar key={index} color='#0067FF'/>
                     ))}
                 </div>
-            </div>
+            </div>)) }
         </div>
         <div className='text-center'>
             {!showFeedbackForm && <button className='btn' onClick={()=>setShowFeedbackForm(true)}>

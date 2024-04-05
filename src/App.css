@@ -48,3 +48,7 @@ body {
     display: block;
   }
 }
+.selected-time-slot {
+  background-color: #CCCCCC; /* Màu khác cho các nút đã được đặt lịch */
+  cursor: not-allowed; /* Không cho phép click */
+}

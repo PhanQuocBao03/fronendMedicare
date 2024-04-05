@@ -48,8 +48,15 @@ const Login = ()=>{
             console.log(result, "Login data");
 
             setLoading(false);
+
+           if(result.role === 'admin'){
+                navigate('/admin')
+           }
+           else navigate('/home')
+           
+           
             toast.success(result.message);
-            navigate('/home')
+
          } catch (error) {
             toast.error(error.message);
             setLoading(false);

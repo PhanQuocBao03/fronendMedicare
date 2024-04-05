@@ -1,10 +1,20 @@
-const SidePanel = ()=>{
+import convertTime from "../../utils/convertTime";
+import {BASE_URL,token} from "../../../config";
+import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
+import { formateDate } from "../../utils/fomateDay";
+
+
+
+const SidePanel = ({doctorId, ticketPrice, timeSlots,})=>{
+
+    
     return (
         <div className="shadow-panelShadow p-3 lg:p-5 rounded-md">
            <div className="flex items-center justify-between">
             <p className="text__para mt-0 font-semibold">Ticket</p>
             <span className="text-[16px] leading-7 lg:text-[22px] lg:leading-8 text-headingColor font-bold">
-                500 BDT
+                {ticketPrice} BDT
             </span>
            </div>
            <div className="mt-[30px]">
@@ -12,33 +22,26 @@ const SidePanel = ()=>{
                 Availabel Time Slost:
             </p>
             <ui className="mt-3">
-                <li className="flex items-center justify-between mb-2">
-                    <p className="text-[15px] leading-6  text-textColor font-semibold">
-                        Sunday
-                    </p>
-                    <p className="text-[15px] leading-6  text-textColor font-semibold">
-                       4:00 PM - 9:30 PM
-                    </p>
-                </li>
-                <li className="flex items-center justify-between mb-2">
-                    <p className="text-[15px] leading-6  text-textColor font-semibold">
-                        Tuesday
-                    </p>
-                    <p className="text-[15px] leading-6  text-textColor font-semibold">
-                       4:00 PM - 9:30 PM
-                    </p>
-                </li>
-                <li className="flex items-center justify-between mb-2">
-                    <p className="text-[15px] leading-6  text-textColor font-semibold">
-                      Wednesday
-                    </p>
-                    <p className="text-[15px] leading-6  text-textColor font-semibold">
-                       4:00 PM - 9:30 PM
-                    </p>
-                </li>
+                {timeSlots?.map((timeSlots,index)=>(
+                     <li key={index} className="flex items-center justify-between mb-2">
+                     <p className="text-[15px] leading-6  text-textColor font-semibold">
+                         {formateDate (timeSlots.day)}
+                     </p>
+                     <p className="text-[15px] leading-6  text-textColor font-semibold">
+                       {convertTime(timeSlots.startingTime)} - {convertTime(timeSlots.endingTime)}
+                     </p>
+                 </li>
+
+                ))}
+               
+               
             </ui>
            </div>
-           <button className="btn w-full rounded-md">Book Appointment</button>
+           <Link to={`/bookings/checkout-session/${doctorId}`} >
+           <button  className="btn w-full rounded-md">Book Appointment</button>
+
+
+           </Link>
         </div>
         
     );

@@ -12,7 +12,7 @@ const navLinks=[
     },
     {
         path:'/doctors',
-        display:'find a Doctor'
+        display:'Find a Doctor'
     },
     {
         path:'/services',
@@ -57,13 +57,12 @@ const Headers = () =>{
             </div>
 
                 {/* ========Menu====== */}
-            <div className="navigation" ref={menuRef} onClick={toggleMenu}>
+            <div className="max-md:hidden navigation " ref={menuRef} onClick={toggleMenu}>
                 <ul className="menu flex items-center gap-[2.7rem]">
                     {navLinks.map((link,index)=>( <li key={index}>
                             <NavLink 
                                 to={link.path} 
-                                className={navClass=> 
-                                    navClass.isActive 
+                                className={navClass => navClass.isActive 
                                     ?"text-primaryColor text-[16px] leading-7 font-[600]"
                                     :"text-textColor text-[16px] leading-7 font-[500] hover:text-primaryColor"
                                     }
@@ -78,11 +77,11 @@ const Headers = () =>{
                     <div className="flex itmes-center gap-4">
                         {
                             token && user ? <div >
-                          <Link to={`${role==='doctor' ? '/doctors/profile/me' : 'users/profile/me'}`}>
+                          <Link to={`${role==='doctor' ? '/doctors/profile/me' : '/users/profile/me'}`}>
                             <figure className="w-[35px] h-[35px] rounded-full cursor-pointer">
                                 <img src={user?.photo} className="w-full rounded-full" alt="" />
+                               
                             </figure>
-
                             {/* <h2>{user?.name}</h2> */}
                           </Link>
                         </div>:<Link to='/login'>

@@ -18,7 +18,7 @@ import { toast } from "react-toastify";
         specialization:'',
         ticketPrice:0,
         qualifications:[],
-        experences:[],
+        experiences:[],
         timeSlots:[],
         about:'',
         photo: null,
@@ -35,7 +35,7 @@ import { toast } from "react-toastify";
             specialization:doctorData.specialization,
             ticketPrice:doctorData.ticketPrice,
             qualifications:doctorData.qualifications,
-            experences:doctorData.experences,
+            experiences:doctorData.experiences,
             timeSlots:doctorData.timeSlots,
             about:doctorData.about,
             photo: doctorData.photo,
@@ -56,7 +56,7 @@ import { toast } from "react-toastify";
         e.preventDefault();
         try {
             const res = await fetch(`${BASE_URL}/doctors/${doctorData._id}`,{
-                method: 'put',
+                method: 'PUT',
                 headers:{
                     'Content-Type': 'application/json',
                     Authorization: `Bearer ${token}`,
@@ -65,11 +65,11 @@ import { toast } from "react-toastify";
                 
             })
             const result = await res.json();
-            toast.success(message);
+            toast.success(result.message);
             // navigate('/users/profile/me')
 
             if(!res.ok){
-                throw new Error(result.message)
+                throw  Error(result.message)
             }
         } catch (error) {
             toast.error(error.message);
@@ -102,7 +102,7 @@ import { toast } from "react-toastify";
 
         })
     }
-
+    // ===============================================================
     const addQualification = e=>{
         e.preventDefault();
         addItem('qualifications',{
@@ -115,33 +115,21 @@ import { toast } from "react-toastify";
     const deleteQualifications = (e , index)=>{
         e.preventDefault()
         deleteItem('qualifications', index)
-    }
-
-    // const handelReusableInputChangeFunc =(key, index, event)=>{
-    //     const {name, value}= event.target
-    //     setFormData(prevFormData=>{
-    //         const updateItems = [...prevFormData[key]];
-    //         updateItems[index][name] = value;
-
-    //         return{
-    //             ...prevFormData,
-    //             [key]: updateItems,
-    //         }
-
-    //     })
-    // }
-
-    const addExperence = e=>{
+    };
+    // ===============================================================
+    const addExperience = e=>{
         e.preventDefault();
-        addItem('experences',{ startingDate: '' , endingDate:'', position:'Senior', hospital:'Canther'})
+        addItem('experiences',{ startingDate: '' , endingDate:'', position:'Senior', hospital:'Canther'})
     }
-    const handleExperenceChange = (event, index) =>{
-        handelReusableInputChangeFunc('experences', index, event)
+    const handleExperienceChange = (event, index) =>{
+        handelReusableInputChangeFunc('experiences', index, event)
     }
-    const deleteExperence = (e , index)=>{
+    const deleteExperience = (e , index)=>{
         e.preventDefault()
-        deleteItem('experences', index)
+        deleteItem('experiences', index)
     }
+   
+    // ================================================================
     const addTimeSlot = e=>{
         e.preventDefault();
         addItem('timeSlots',{ day: '' , startingTime:'', endingTime:'', })
@@ -181,7 +169,7 @@ import { toast } from "react-toastify";
                 <div className="mb-5">
                     <div className="form__lable "> Bio*</div>
                     <input type="text" name="bio" value={formData.bio} onChange={handleInputChange} 
-                    placeholder="Bio " className="form__input" maxLength={150}/>
+                    placeholder="Bio " className="form__input" maxLength={200}/>
                 </div>
 
                 <div className="mb-5">
@@ -204,6 +192,7 @@ import { toast } from "react-toastify";
                                 <option value="surgeon">Surgeon</option>
                                 <option value="neurologist">Neurologist</option>
                                 <option value="dermatologist">Dermatologist</option>
+                                <option value="internalMedicine">Internal Medicine</option>
                             </select>
                         </div>
                         <div>
@@ -254,38 +243,40 @@ import { toast } from "react-toastify";
                     <button onClick={addQualification} className="bg-[#000] py-2 px-5  rounded text-white h-fit cusror-pointer"> Add Qualifications</button>
                 </div>
                 <div className="mb-5">
-                    <p className="form__lable"> Experences*</p>
+                    <p className="form__lable"> experiences*</p>
                     {
-                        formData.experences?.map((item, index)=> <div key={index}>
+                        formData.experiences?.map((item, index)=> <div key={index}>
                             <div>
                                 <div className="grid grid-cols-2 gap-5">
                                     <div>
                                         <p className="form__label">Starting Date*</p>
-                                        <input  onChange={e=>handleExperenceChange(e, index)} type="date" name="startingDate"  value={item.startingDate} className="form__input" />
+                                        <input  onChange={e=>handleExperienceChange(e, index)} type="date" name="startingDate"  value={item.startingDate} className="form__input" />
                                     </div>
                                     <div>
                                         <p className="form__label">Ending Date*</p>
-                                        <input  onChange={e=>handleExperenceChange(e, index)} type="date" name="endingDate"  value={item.endingDate} className="form__input" />
+                                        <input  onChange={e=>handleExperienceChange(e, index)} type="date" name="endingDate"  value={item.endingDate} className="form__input" />
                                     </div>
                                 </div>
                                 <div className="grid grid-cols-2 gap-5 mt-5">
                                     <div>
                                         <p className="form__label">Position*</p>
-                                        <input  onChange={e=>handleExperenceChange(e, index)} type="text" name="position"  value={item.position} className="form__input" />
+                                        <input  onChange={e=>handleExperienceChange(e, index)} type="text" name="position"  value={item.position} className="form__input" />
                                     </div>
                                     <div>
                                         <p className="form__label">Hospital*</p>
-                                        <input onChange={e=>handleExperenceChange(e, index)} type="text" name="hospital"  value={item.hospital} className="form__input" />
+                                        <input onChange={e=>handleExperienceChange(e, index)} type="text" name="hospital"  value={item.hospital} className="form__input" />
                                     </div>
                                 </div>
-                                    <button  onClick={e => deleteExperence(e, index)} className="bg-red-600 rounded-full text-white text-[32px] mt-2 mb-[30px] cursor-pointer">
+                                    <button  onClick={e => deleteExperience(e, index)} className="bg-red-600 rounded-full text-white text-[32px] mt-2 mb-[30px] cursor-pointer">
                                         <AiOutlineDelete />
                                     </button>
                             </div>
                         </div>)
                     }
-                    <button onClick={addExperence} className="bg-[#000] py-2 px-5  rounded text-white h-fit cusror-pointer"> Add Experences</button>
+                    <button onClick={addExperience} className="bg-[#000] py-2 px-5  rounded text-white h-fit cusror-pointer"> Add experiences</button>
+
                 </div>
+                   
                 <div className="mb-5">
                     <p className="form__lable"> Time Slots*</p>
                     {
@@ -294,7 +285,7 @@ import { toast } from "react-toastify";
                                 <div className="grid grid-cols-2 md:grid-cols-4 mb-[30px] gap-5">
                                     <div>
                                         <p className="form__label">Day*</p>
-                                        <select onChange={e=>handleTimeSlotChange(e, index)} name="day" value={item.day} className="form__input py-3.5">
+                                        {/* <select onChange={e=>handleTimeSlotChange(e, index)} name="day" value={item.day} className="form__input py-3.5">
                                             <option value="">Select</option>
                                             <option value="sunday">Sunday</option>
                                             <option value="saturday">Satusday</option>
@@ -303,16 +294,16 @@ import { toast } from "react-toastify";
                                             <option value="wednesday">Wednesday</option>
                                             <option value="thursday">Thursday</option>
                                             <option value="friday">Friday</option>
-                                        </select>
-                                        {/* <input type="date" name="startingDate"  value={item.startingDate} className="form__input" /> */}
+                                        </select> */}
+                                        <input type="date" onChange={e=>handleTimeSlotChange(e, index)} name="day" value={item.day} className="form__input py-3.5"/>
                                     </div>
                                     <div>
                                         <p className="form__label">Starting Time*</p>
-                                        <input onChange={e=>handleTimeSlotChange(e, index)} type="time" name="startingTime"  value={item.startingTime} className="form__input" />
+                                        <input onChange={e=> handleTimeSlotChange(e, index)} type="time" name="startingTime"  value={item.startingTime} className="form__input" />
                                     </div>
                                     <div>
                                         <p className="form__label">Ending Time*</p>
-                                        <input onChange={e=>handleTimeSlotChange(e, index)} type="time" name="endingTime"  value={item.endingTime} className="form__input" />
+                                        <input onChange={e=> handleTimeSlotChange(e, index)} type="time" name="endingTime"  value={item.endingTime} className="form__input" />
                                         
                                     </div>
                                     <div className="flex items-center">

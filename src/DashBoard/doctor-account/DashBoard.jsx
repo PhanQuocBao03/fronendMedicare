@@ -5,15 +5,21 @@ import { BASE_URL } from "../../../config";
 import Tabs from "./Tabs";
 import { useState } from "react";
 import startIcon from "../../assets/images/Star.png"
-import doctorsImg from "../../assets/images/doctor-img01.png"
+
 import DoctorAbout from "../../pages/Doctors/DoctorAbout";
 import Profile from "./Profile"
+import Appointments from "./Appointments";
 
 const DashBoard = ()=>{
     const {data, loading, error} = useFetchData(`${BASE_URL}/doctors/profile/me`);
+    // console.log(data,'check')
     const [tab, setTab] = useState('overview')
+    const filteredAppointments = data?.appointments?.filter(appointment => appointment.isApproved != 'cancel')
+    console.log('data',filteredAppointments)
     return(
         <section>
+                
+
             <div className="max-w-[1170px] px-5 mx-auto">
                 {loading && !error && <Loader/>}
                 {!loading && error && <Error/>}
@@ -59,7 +65,7 @@ const DashBoard = ()=>{
                                         </figure>
                                         <div>
                                             <span className="bg-[#CCF0F3] text-irisBlueColor py-1 px-4 lg:py-2 lg:px-6 rounded text-[12px] leading-4 lg:text-[16px] lg:leading-6 font-semibold ">
-                                                {data.specialzation}
+                                                {data.specialization}
                                             </span>
                                             <h3 className="text-[22px] leading-9 font-bold text-headingColor mt-3">{data.name}</h3>
                                             <div className="flex text-center gap-[16px]">
@@ -77,10 +83,10 @@ const DashBoard = ()=>{
                                         name ={data.name}
                                         about = {data.about}
                                         qualifications={data.qualifications}
-                                        experences={data.experences}
+                                        experiences={data.experiences}
                                     />
                                 </div>}
-                                {tab==='appointments' && <div>Appointments</div>}
+                                {tab==='appointments' && <Appointments appointments={filteredAppointments}/>}
                                 {tab==='settings' && <Profile doctorData={data}/>}
                             </div>
                             </div>

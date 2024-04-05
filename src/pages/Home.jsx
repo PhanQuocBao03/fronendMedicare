@@ -63,8 +63,8 @@ const Home = () =>{
                             <img src={heroImg01} className="w-full" alt="" />
                         </div>
                         <div className="mt-[30px]">
-                            <img src={heroImg02} className="w-full mb-[30px]" alt="" />
-                            <img src={heroImg03} className="w-full " alt="" />
+                            <img src={heroImg02} className="w-[300px] rounded-[10px] mb-[30px]" alt="" />
+                            <img src={heroImg03} className="w-[300px] rounded-[10px] " alt="" />
                         </div>
                     </div>
                 </div>
@@ -77,7 +77,7 @@ const Home = () =>{
                         <h2 className="heading text-center">Providing the best mediical services</h2>
                         <p className="text__para text-center">World-class care for everyone. Our health  Systems offers umatched, expect health care.</p>
                     </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lag:grid-cols-3  gap-5 lg:gap-[30px] mt-[30px] lg:mt-[55px]">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-5 lg:gap-[30px] mt-[30px] lg:mt-[55px]">
                         <div className="py-[30px] px-5">
                             <div className="flex items-center justify-center">
                                 <img src={icon01} alt="" />
@@ -132,7 +132,7 @@ const Home = () =>{
         
         <About/>
 
-        <section>
+        {/* <section>
             <div className="container">
                 <div className="xl:w-[470px] mx-auto">
                     <h2 className="heading text-center">Our medical service</h2>
@@ -143,7 +143,7 @@ const Home = () =>{
                 </div>
                 <ServiceList/>
             </div>
-        </section>
+        </section> */}
         <section>
             <div className="container">
                 <div className="flex items-center justify-between  flex-col lg:flex-row">
@@ -197,7 +197,7 @@ const Home = () =>{
                         offers umatched, expect health care.
                     </p>
                 </div>
-                <DoctorList/>
+                <DoctorList />
             </div>
         </section>
         {/* =========FaQ ===================*/}
