@@ -19,7 +19,7 @@ const MyBookings = () => {
                 <h2 className="mt-5 text-center leading-7 text-[20px] font-semibold text-primaryColor">You did not book any doctor yet!</h2>
             )}
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
                 {filteredBookings.map(bookings => (
                     <BookingCard key={bookings._id} doctor={getDoctorById(data.doctors, bookings.doctor._id)} bookings={bookings} />
                 ))}

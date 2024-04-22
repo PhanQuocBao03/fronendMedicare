@@ -50,7 +50,7 @@ const Login = ()=>{
             setLoading(false);
 
            if(result.role === 'admin'){
-                navigate('/admin')
+                navigate('/')
            }
            else navigate('/home')
            

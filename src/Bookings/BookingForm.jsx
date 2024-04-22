@@ -203,9 +203,9 @@ const BookingForm = ({ doctor }) => {
                                     key={index}
                                     onClick={(event) => handleTimeClick(event, timeSlot)}
                                     className={`flex-shrink-0 w-1/5 bg-white  text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow mx-2 mb-2 ${
-                                        isTimeSlotBooked(timeSlot) ? 'bg-gray-200 text-gray-100 cursor-not-allowed' : 
+                                        isTimeSlotBooked(timeSlot) ? 'bg-gray-300 text-gray-100 cursor-not-allowed' : 
                                         selectedTime === timeSlot ? 'bg-blue-500 text-white' : 
-                                        isPast(timeSlot) ? 'bg-gray-200 text-gray-200 cursor-not-allowed' : '' 
+                                        isPast(timeSlot) ? 'bg-gray-200 text-gray-500 cursor-not-allowed' : '' 
                                     }`}
                                     disabled={isPast(timeSlot) || isTimeSlotBooked(timeSlot)}
                                 >

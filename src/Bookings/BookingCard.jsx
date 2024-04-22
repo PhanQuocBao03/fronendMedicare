@@ -34,11 +34,11 @@ const BookingCard = ({ doctor, bookings }) => {
     };
 
     return (
-        <div className="p-3 lg:b-5 border border-bold mt-3 w-[250px] flex flex-col justify-center items-center">
+        <div className="p-3 lg:b-5 border border-bold mt-3  flex flex-col justify-center items-center">
             <div>
                 <img src={doctor.photo} className="w-full" alt="" />
             </div>
-            <h2 className="text-[18px] leading-[30px] lg:text[26px] lg:leading-9 text-headingColor font-[700] mt-5 lg:mt-5">{doctor.name}</h2>
+            <h2 className="text-[18px] leading-[30px] lg:text[26px] lg:leading-9 text-headingColor font-[700px] mt-5 lg:mt-5">{doctor.name}</h2>
             <div className="mt-[18px] lg:mt-5">
                 <div className='flex items-center justify-between w-[150px]'>
                     <p className="text-[16px] leading-6  font-[400] text-textColor ">{convertTime(selectedTime)} </p>

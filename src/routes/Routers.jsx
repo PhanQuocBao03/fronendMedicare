@@ -10,7 +10,7 @@ import Booking from "../Bookings/Booking";
 import MyAccount from "../DashBoard/user-account/MyAccount";
 import DashBoard from "../DashBoard/doctor-account/DashBoard";
 import ProtectedRoute from "./ProtectedRoute";
-import DashBoardAdmin from "../../admin/DashBoardAdmin";
+// import DashBoardAdmin from "../../admin/DashBoardAdmin";
 
 import {Routes, Route}  from 'react-router-dom'
 const Routers = () =>{
@@ -27,7 +27,7 @@ const Routers = () =>{
         <Route path="/checkout-success" element={<CheckoutSuccess/>} />
         <Route path="/users/profile/me" element={<ProtectedRoute allowedRoles={['patient']}><MyAccount/></ProtectedRoute>} />
         <Route path="/doctors/profile/me" element={<ProtectedRoute allowedRoles={['doctor']}><DashBoard /></ProtectedRoute>} />
-        <Route path = "/admin" element = {<DashBoardAdmin/>}/>
+        {/* <Route path = "/admin" element = {<DashBoardAdmin/>}/> */}
         
     </Routes>
 }
